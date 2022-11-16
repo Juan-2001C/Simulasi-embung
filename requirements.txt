@@ -1,8 +1,7 @@
 # Date: 01-22-2022
 
 # Minimum requirements for a plotly dash application
-asttokens                 2.1.0
-backcall                  0.2.0
+
 bokeh                     3.0.1
 click                     8.1.3
 colorama                  0.4.6

@@ -7,6 +7,7 @@ import dash_bootstrap_components as dbc
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+
 # from main import *
 
 #inisiasi aplikasi
@@ -15,24 +16,49 @@ app = dash.Dash(__name__, server=server, external_stylesheets=[dbc.themes.BOOTST
 
 
 #membaca file
-sheet_inflow = "inflow"
-sheet_outflow = "outflow"
-url_inflow = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTzEHx9j46kH6GAYlbyKRCz5-Cbic2OaX2TMjFY1XI8uWLifG37k-CR80YReu8KsCntEjdvMOMmlkpy/pub?output=csv&sheet={sheet_inflow}"
-url_outflow = url="https://docs.google.com/spreadsheets/d/e/2PACX-1vTzEHx9j46kH6GAYlbyKRCz5-Cbic2OaX2TMjFY1XI8uWLifG37k-CR80YReu8KsCntEjdvMOMmlkpy/pub?output=csv&sheet={sheet_outflow}"
-df_inflow = pd.read_csv(url_inflow)
-df_outflow = pd.read_csv(url_outflow)
+air_masuk1 = "Chart Air Masuk "
+
+air_keluar1 = "Chart Air Keluar "
+
+url_masuk = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQVE6RWRi3EG9vL2iBq7Vw2RK3SW2-iIwAaFus3nU2HLbbzhZ3Jb3xVdv6Kd-nJ-hu4gu8ftRZ4mJvF/pub?output=csv&sheet={air_masuk1}"
+url_keluar = url="https://docs.google.com/spreadsheets/d/e/2PACX-1vQQVBtC-xGgAwkkTOMCEEJp78FbJTlBxWD39LXtRdRs9S5Pl4yjFjT7XZpGie1BgUpSrTVGgda74ste/pub?output=csv&sheet={air_keluar1}"
+
+
+df_masuk = pd.read_csv(url_masuk)
+df_keluar = pd.read_csv(url_keluar)
+
 
 
 #membangun komponen
-header = html.H1("Aplikasi Simulasi Kapasitas Embung", style={'textAlign': 'center'})
-subtitle = html.H2("MK Kapita Selekta Matematika Komputasi (MA4103)", style={'textAlign': 'center'})
-inflow_fig = go.FigureWidget()
-inflow_fig.add_scatter(name='Inflow', x=df_inflow['Bulan'], y=df_inflow['Data'])
-inflow_fig.layout.title = 'Inflow'
+header = html.Div([html.H1("Aplikasi Simulasi Kapasitas Embung E ITERA"), html.H3("Kelompok 7")],style={
+    "textAlign" : "center",
+    "height": "4 rem",
+    "padding": "2rem 1rem",
+    "background-color": "lightgreen",
+})
+footer = html.Div([html.H1("Tentang Kami"), html.H5("Kelompok 7"), html.P("Ketua Kelompok : Juan"),html.P("Anggota Kelompok : Kevin,Evril, Alfredo, Tasya, Anggi,  Anggin ")],style={
+    "textAlign" : "none",
+    "top": 0,
+    "left": 0,
+    "right": 0,
+    "height": "2 rem",
+    "padding": "1rem 1rem",
+    "background-color": "lightgray",
+})
 
-outflow_fig = go.FigureWidget()
-outflow_fig.add_scatter(name='Outflow', x=df_outflow['Bulan'], y=df_outflow['Data'])
-outflow_fig.layout.title = 'Outflow'
+
+
+
+subtitle = html.P("Embung E merupakan...",style={})
+datamasuk_gam = go.FigureWidget()
+datamasuk_gam.add_bar(name="Chart Air Masuk Pertama", x=df_masuk['Bulan'], y=df_masuk['Data-masuk'])
+datamasuk_gam.add_bar(name="Chart Air Masuk Kedua", x=df_masuk['Bulan'], y=df_masuk['Data-masuk-2'])
+datamasuk_gam.layout.title = 'Chart Inflow Embung '
+
+datakeluar_gam = go.FigureWidget()
+datakeluar_gam.add_scatter(name="Outflow Pertama" , x=df_keluar['Bulan'], y=df_keluar['Data-keluar'])
+datakeluar_gam.add_scatter(name="Outflow Kedua" , x=df_keluar['Bulan'], y=df_keluar['Data-keluar-2'])
+datakeluar_gam.layout.title = 'Chart Outflow Embung'
 
 simulation_fig = go.FigureWidget()
 # simulation_fig.add_scatter(name='Outflow', x=df_outflow['Bulan'], y=df_outflow['Data'])
@@ -42,25 +68,31 @@ simulation_fig.layout.title = 'Simulation'
 #layout aplikasi
 app.layout = html.Div(
     [
-        dbc.Row([header, subtitle]),
+        dbc.Row([header, subtitle])  ,
         dbc.Row(
             [
-                dbc.Col([dcc.Graph(figure=inflow_fig)]), 
-                dbc.Col([dcc.Graph(figure=outflow_fig)])
+                dbc.Col([dcc.Graph(figure=datamasuk_gam)]),
+               
+            ]
+            ),
+        dbc.Row(
+            [
+                dbc.Col([dcc.Graph(figure=datakeluar_gam)]),
+                
             ]
             ),
         html.Div(
             [
-                html.Button('Run', id='run-button', n_clicks=0)
-            ],
-            style = {'textAlign': 'center'}
-        ), 
+                dbc.Button('Simulasi', color="danger",id='run-button', n_clicks=0)
+            ],style = {'textAlign': 'center'})
+        , 
         html.Div(id='output-container-button', children='Klik run untuk menjalankan simulasi.', style = {'textAlign': 'center'}),
         dbc.Row(
             [
                 dbc.Col([dcc.Graph(id='simulation-result', figure=simulation_fig)])
             ]
-        )
+        ),
+        footer
     ]
     
 )
@@ -76,10 +108,10 @@ def graph_update(n_clicks):
     # filtering based on the slide and dropdown selection
     if n_clicks >=1:
         #program numerik ---start----
-        inout = df_inflow["Data"].values - df_outflow["Data"].values
+        inout =  (df_masuk['Data-masuk'].values - df_keluar['Data-keluar'].values)
         N = len(inout)
         u = np.zeros(N)
-        u0 = 4000
+        u0 = 11800
         u[0] = u0
         dt = 1
 
@@ -91,13 +123,13 @@ def graph_update(n_clicks):
 
         # the figure/plot created using the data filtered above 
         simulation_fig = go.FigureWidget()
-        simulation_fig.add_scatter(name='Simulation', x=df_outflow['Bulan'], y=u)
+        simulation_fig.add_scatter(name='Simulation', x=df_keluar['Bulan'], y=u)
         simulation_fig.layout.title = 'Simulation'
 
         return simulation_fig
     else:
         simulation_fig = go.FigureWidget()
-        simulation_fig.layout.title = 'Simulation'
+        simulation_fig.layout.title = 'Simulasi Kapasitas Embung E ITERA '
 
         return simulation_fig
 
@@ -105,5 +137,7 @@ def graph_update(n_clicks):
 
 
 #jalankan aplikasi
-if __name__ == '__main__':
-    app.run_server()
+if __name__=='__main__':
+    app.run_server(debug=True)
+
+#debug=True, port=11916

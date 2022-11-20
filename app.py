@@ -36,7 +36,7 @@ header = html.Div([html.H1("Aplikasi Simulasi Kapasitas Embung E ITERA"), html.H
     "padding": "2rem 1rem",
     "background-color": "lightgreen",
 })
-footer = html.Div([html.H1("Tentang Kami"), html.H5("Kelompok 7"), html.P("Ketua Kelompok : Juan"),html.P("Anggota Kelompok : | Kevin | Evril | Alfredo | Tasya | Anggi | Anggin "),html.P('Berikut pertanggungjawaban keaktifan kelompok kami bisa dilihat di "Bukti" berikut.'),dbc.Button("Bukti", color="info", href="https://drive.google.com/file/d/1WDgpBN6HGeOPRsEMa06AzFnnbX6DOoQM/view?usp=sharing")],style={
+footer = html.Div([html.H1("Tentang Kami"), html.H5("Kelompok 7"), html.P("Ketua Kelompok : Juan"), html.P("Sekertaris Kelompok : Evrilia"), html.P("Anggota Kelompok : | Kevin | Alfredo | Tasya | Anggi | Tria "),html.P('Berikut pertanggungjawaban keaktifan kelompok kami bisa dilihat di "Bukti" berikut.'),dbc.Button("Bukti", color="info", href="https://drive.google.com/file/d/1WDgpBN6HGeOPRsEMa06AzFnnbX6DOoQM/view?usp=sharing")],style={
     "textAlign" : "none",
     "top": 0,
     "left": 0,

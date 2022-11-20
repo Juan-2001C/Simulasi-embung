@@ -118,7 +118,7 @@ def graph_update(n_clicks):
 
         #metode Euler
         for n in range(N-1):
-            u[n + 1] = u[n] + dt*inout1[n] - dt*inout2[n]
+            u[n + 1] = u[n] + dt*inout1[n] + dt*inout2[n]
         #program numerik ---end----
 
 

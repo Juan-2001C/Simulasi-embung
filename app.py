@@ -112,7 +112,7 @@ def graph_update(n_clicks):
         inout1 =  (df_masuk['jumlah'].values - df_keluar['jumlah'].values)
         N = len(inout1)
         u = np.zeros(N)
-        u0 = 11800
+        u0 = 196800
         u[0] = u0
         dt = 1
 

@@ -108,8 +108,9 @@ def graph_update(n_clicks):
     # filtering based on the slide and dropdown selection
     if n_clicks >=1:
         #program numerik ---start----
-        inout =  (df_masuk['Data-masuk'].values - df_keluar['Data-keluar'].values)
-        N = len(inout)
+        inout1 =  (df_masuk['Data-masuk'].values - df_keluar['Data-keluar'].values)
+        inout2 =  (df_masuk['Data-masuk-2'].values - df_keluar['Data-keluar-2'].values)
+        N = len(inout1, inout2)
         u = np.zeros(N)
         u0 = 11800
         u[0] = u0
@@ -117,7 +118,7 @@ def graph_update(n_clicks):
 
         #metode Euler
         for n in range(N-1):
-            u[n + 1] = u[n] + dt*inout[n]
+            u[n + 1] = u[n] + dt*inout1[n] - dt*inout2[n]
         #program numerik ---end----
 
 

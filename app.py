@@ -49,8 +49,8 @@ footer = html.Div([html.H1("Tentang Kami"), html.H5("Kelompok 7"), html.P("Ketua
 
 
 
-subtitle = [html.P("Ketika melakukan simulasi Neraca Air suatu embung, komponen yang paling penting adalah inflow dan kebutuhan air. Jika kapasitas penyimpanan embung adalah tetap, embung bisa kering atau menjadi penuh dan mulai limpas. Dengan mempertimbangkan aspek-aspek seperti tersebut diatas, Neraca Air di embung dapat ditulis sebagai berikut:
-"),html.P("S(t) = S(t-1)+ (I-O)dt"),style={}]
+subtitle = html.Div(html.P("Ketika melakukan simulasi Neraca Air suatu embung, komponen yang paling penting adalah inflow dan kebutuhan air. Jika kapasitas penyimpanan embung adalah tetap, embung bisa kering atau menjadi penuh dan mulai limpas. Dengan mempertimbangkan aspek-aspek seperti tersebut diatas, Neraca Air di embung dapat ditulis sebagai berikut:
+"),html.P("S(t) = S(t-1)+ (I-O)dt"),style={})
 datamasuk_gam = go.FigureWidget()
 datamasuk_gam.add_bar(name="Chart Air Masuk Pertama", x=df_masuk['Bulan'], y=df_masuk['Data-masuk'])
 datamasuk_gam.add_bar(name="Chart Air Masuk Kedua", x=df_masuk['Bulan'], y=df_masuk['Data-masuk-2'])

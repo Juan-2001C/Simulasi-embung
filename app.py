@@ -141,4 +141,4 @@ def graph_update(n_clicks):
 if __name__=='__main__':
     app.run_server()
 
-#debug=True, port=11916
+#debug=True, port=1191

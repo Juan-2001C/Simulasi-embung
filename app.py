@@ -87,7 +87,7 @@ app.layout = html.Div(
                 dbc.Button('Simulasi', color="danger",id='run-button', n_clicks=0)
             ],style = {'textAlign': 'center'})
         , 
-        html.Div(id='output-container-button', children='Klik run untuk menjalankan simulasi.', style = {'textAlign': 'center'}),
+        html.Div(id='output-container-button', children='Klik tombol "Simulasi" untuk menjalankan .', style = {'textAlign': 'center'}),
         dbc.Row(
             [
                 dbc.Col([dcc.Graph(id='simulation-result', figure=simulation_fig)])

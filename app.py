@@ -36,11 +36,11 @@ header = html.Div([html.H1("Aplikasi Simulasi Kapasitas Embung E ITERA"), html.H
     "padding": "2rem 1rem",
     "background-color": "lightgreen",
 })
-footer = html.Div([html.H1("Tentang Kami"), html.H5("Kelompok 7"), html.P("Ketua Kelompok : Juan"),html.P("Anggota Kelompok : Kevin,Evril, Alfredo, Tasya, Anggi,  Anggin ")],style={
+footer = html.Div([html.H1("Tentang Kami"), html.H5("Kelompok 7"), html.P("Ketua Kelompok : Juan"),html.P("Anggota Kelompok : | Kevin | Evril | Alfredo | Tasya | Anggi | Anggin ")],style={
     "textAlign" : "none",
     "top": 0,
     "left": 0,
-    "right": 0,
+    "right": " 4 rem",
     "height": "2 rem",
     "padding": "1rem 1rem",
     "background-color": "lightgray",
@@ -125,7 +125,7 @@ def graph_update(n_clicks):
         # the figure/plot created using the data filtered above 
         simulation_fig = go.FigureWidget()
         simulation_fig.add_scatter(name='Simulation', x=df_keluar['Bulan'], y=u)
-        simulation_fig.layout.title = 'Simulation'
+        simulation_fig.layout.title = 'Hasil Simulasi'
 
         return simulation_fig
     else:

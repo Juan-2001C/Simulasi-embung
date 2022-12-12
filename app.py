@@ -52,13 +52,13 @@ footer = html.Div([html.H1("Tentang Kami"), html.H5("Kelompok 7"), html.P("Ketua
 subtitle = html.P("Ketika melakukan simulasi Neraca Air suatu embung, komponen yang paling penting adalah inflow dan kebutuhan air. Jika kapasitas penyimpanan embung adalah tetap, embung bisa kering atau menjadi penuh dan mulai limpas. Dengan mempertimbangkan aspek-aspek seperti tersebut diatas, Neraca Air di embung dapat ditulis sebagai berikut:S(t) = S(t-1)+ (I-O)dt",style={})
 
 datamasuk_gam = go.FigureWidget()
-datamasuk_gam.add_bar(name="Chart Air Masuk Pertama", x=df_masuk['Bulan'], y=df_masuk['Data-masuk'])
-datamasuk_gam.add_bar(name="Chart Air Masuk Kedua", x=df_masuk['Bulan'], y=df_masuk['Data-masuk-2'])
+datamasuk_gam.add_bar(name="Chart Air Curah Hujan", x=df_masuk['Bulan'], y=df_masuk['Data-masuk'])
+datamasuk_gam.add_bar(name="Chart Air Debit Air", x=df_masuk['Bulan'], y=df_masuk['Data-masuk-2'])
 datamasuk_gam.layout.title = 'Chart Inflow Embung '
 
 datakeluar_gam = go.FigureWidget()
-datakeluar_gam.add_scatter(name="Outflow Pertama" , x=df_keluar['Bulan'], y=df_keluar['Data-keluar'])
-datakeluar_gam.add_scatter(name="Outflow Kedua" , x=df_keluar['Bulan'], y=df_keluar['Data-keluar-2'])
+datakeluar_gam.add_scatter(name="Outflow Suhu Temperatur" , x=df_keluar['Bulan'], y=df_keluar['Data-keluar'])
+datakeluar_gam.add_scatter(name="Outflow Kecepatan Angin" , x=df_keluar['Bulan'], y=df_keluar['Data-keluar-2'])
 datakeluar_gam.layout.title = 'Chart Outflow Embung'
 
 simulation_fig = go.FigureWidget()
